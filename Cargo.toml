@@ -1,0 +1,6 @@
+[package]
+name = "crytopals"
+version = "0.1.0"
+authors = ["Vitor Rocha <vitor.vrs@gmail.com>"]
+
+[dependencies]
