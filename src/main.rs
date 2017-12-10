@@ -1,17 +1,18 @@
-use std::str;
-
 fn main() {
 
-  let input = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d".to_string();
-  // let output = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t";
+  let input = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d";
+  let output = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t";
 
-  println!("{:?}", hex2bin(input));
+  let phrase = hex2bin(&input);
+  assert_eq!(input, bin2hex(&phrase));
+
+  assert_eq!(output, base64encode(&phrase));
 }
 
-fn hex2bin(input: String) -> String {
+fn hex2bin(input: &str) -> String {
 
   let bytes: Vec<char> = input.chars().collect();
-  let mut result: Vec<u8> = Vec::new();
+  let mut result: Vec<u8> = vec![];
 
   for chunk in bytes.chunks(2) {
     
@@ -24,8 +25,24 @@ fn hex2bin(input: String) -> String {
   }
 
   // variavel result contém os bytes das letras
-
   String::from_utf8(result).unwrap()
+}
+
+fn bin2hex(input: &str) -> String {
+
+  let bytes: &[u8] = input.as_bytes();
+  let mut result: String = String::from("");
+  
+  for byte in bytes {
+    result.push_str(&format!("{:x}", byte));
+  }
+
+  result
+}
+
+fn base64encode(input: &str) -> String {
+
+  input.to_string()
 }
 
 // todo
