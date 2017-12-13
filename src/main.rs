@@ -6,8 +6,10 @@ fn main() {
   let phrase = hex2bin(&input);
   assert_eq!(input, bin2hex(&phrase));
   assert_eq!(output, base64encode(&phrase));
+  
 }
 
+// trasnforms an hex encoded string into plain text string
 fn hex2bin(input: &str) -> String {
 
   let bytes: Vec<char> = input.chars().collect();
@@ -27,6 +29,7 @@ fn hex2bin(input: &str) -> String {
   String::from_utf8(result).unwrap()
 }
 
+// transforms an string into hex encoded string
 fn bin2hex(input: &str) -> String {
 
   let bytes: &[u8] = input.as_bytes();
@@ -39,15 +42,18 @@ fn bin2hex(input: &str) -> String {
   result
 }
 
+// transform an string into base64 encoded string
 fn base64encode(input: &str) -> String {
 
+  let alphabet: Vec<char> = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".chars().collect();
+
   let bytes: Vec<u8> = input.as_bytes().into();
-  let mut result: Vec<u8> = vec![];
+  let mut result: Vec<char> = vec![];
 
   for chunk in bytes.chunks(3) {
 
     let mut pad: u8 = 2;
-    let mut octet1: u32 = chunk[0] as u32;
+    let octet1: u32 = chunk[0] as u32;
     let mut octet2: u32 = 0;
     let mut octet3: u32 = 0;
 
@@ -63,10 +69,10 @@ fn base64encode(input: &str) -> String {
 
     let data: u32 = (octet1 << 16) | (octet2 << 8) | octet3;
 
-    let sec1: u8 = ( data >> 18 ) as u8;
-    let sec2: u8 = ( ( data & 0b000000_111111_111111_111111 ) >> 12 ) as u8;
-    let mut sec3: u8 = ( ( data & 0b000000_000000_111111_111111 ) >> 6 ) as u8;
-    let mut sec4: u8 = (   data & 0b000000_000000_000000_111111 ) as u8;
+    let sec1 = data >> 18;
+    let sec2 = ( data & 0b000000_111111_111111_111111 ) >> 12;
+    let mut sec3 = ( data & 0b000000_000000_111111_111111 ) >> 6;
+    let mut sec4 = data & 0b000000_000000_000000_111111;
 
     if pad == 2 {
       sec3 = 0x3d;
@@ -75,24 +81,11 @@ fn base64encode(input: &str) -> String {
       sec4 = 0x3d;      
     }
 
-    result.push(sec1);
-    result.push(sec2);
-    result.push(sec3);
-    result.push(sec4);    
+    result.push(alphabet[sec1 as usize]);
+    result.push(alphabet[sec2 as usize]);
+    result.push(alphabet[sec3 as usize]);
+    result.push(alphabet[sec4 as usize]);    
   }
 
-  String::from_utf8(result).unwrap()
+  result.into_iter().collect()
 }
-
-// todo
-// converter a string em hexadecimal para bytes - feito
-// converter os bytes para base 64 - feito
-// converter da tabela base64 para ascii
-
-// I'm
-// 01001001 00100111 01101101 00100000
-// 01001001001001110110110100100000
-// AAAAAA AABBBB BBBBCC CCCCCC DDDDDD DD|
-// 010010 010010 011101 101101 001000 00|0000
-// 18         18     29     45      8      0 
-//  S          S      d      t      I      A
