@@ -1,0 +1,661 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"push",
+				"push_str"
+			],
+			[
+				"pri",
+				"println\tprintln!(…)"
+			],
+			[
+				"oct",
+				"octet3"
+			],
+			[
+				"octe",
+				"octet1"
+			],
+			[
+				"pin",
+				"println\tprintln!(…)"
+			],
+			[
+				"asser",
+				"assert_eq\tassert_eq!(…, …)"
+			],
+			[
+				"asse",
+				"assert_eq\tassert_eq!(…, …)"
+			],
+			[
+				"aut",
+				"autenticar"
+			],
+			[
+				"usua",
+				"usuarioLogado"
+			],
+			[
+				"confir",
+				"confirmarSenha"
+			],
+			[
+				"BACK",
+				"BACKUP_TARGET"
+			],
+			[
+				"BAC",
+				"BACKUP_EXEC_TAR"
+			],
+			[
+				"BACKUP_EXE",
+				"BACKUP_EXEC_PG_DUMP"
+			],
+			[
+				"mov",
+				"movto_cartao"
+			],
+			[
+				"dia_v",
+				"dia_vecto"
+			],
+			[
+				"dia",
+				"dia_vencimento"
+			],
+			[
+				"aluno",
+				"aluno_id"
+			],
+			[
+				"deb",
+				"debitos-aberto"
+			],
+			[
+				"modal",
+				"modalProps"
+			],
+			[
+				"in",
+				"indexHighlight"
+			],
+			[
+				"acad",
+				"academias"
+			],
+			[
+				"index",
+				"indexToday"
+			],
+			[
+				"moda",
+				"modalProps"
+			],
+			[
+				"Pagam",
+				"PagamentoAdiantado"
+			],
+			[
+				"dat",
+				"dataAtual"
+			],
+			[
+				"debi",
+				"debitosMesAMes"
+			],
+			[
+				"aca",
+				"academia_id"
+			],
+			[
+				"Fee",
+				"FeedbackResource"
+			],
+			[
+				"weigh",
+				"weights"
+			],
+			[
+				"gur",
+				"guarnicoes"
+			],
+			[
+				"loa",
+				"load_atendimento"
+			],
+			[
+				"sql",
+				"sqlOrgaos"
+			],
+			[
+				"ate",
+				"atendimentoId"
+			],
+			[
+				"aten",
+				"atendimentoId"
+			],
+			[
+				"atend",
+				"atendimento"
+			],
+			[
+				"pg_num",
+				"pg_num_rows"
+			],
+			[
+				"id",
+				"id_atendimento"
+			],
+			[
+				"align",
+				"align-self"
+			],
+			[
+				"flex",
+				"flex-wrap"
+			],
+			[
+				"col-l",
+				"col-lg-6"
+			],
+			[
+				"premia",
+				"premiacao"
+			],
+			[
+				"form-",
+				"form-group"
+			],
+			[
+				"col-sm",
+				"col-sm-2"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 400.0,
+		"last_filter": "rein",
+		"selected_items":
+		[
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"set rust",
+				"Set Syntax: Rust"
+			],
+			[
+				"set sql",
+				"Set Syntax: SQL"
+			],
+			[
+				"new br",
+				"Git: New Branch"
+			],
+			[
+				"git branch",
+				"Git: Change Branch"
+			],
+			[
+				"set docker",
+				"Set Syntax: Dockerfile"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"branch",
+				"Git: New Branch"
+			],
+			[
+				"sql",
+				"Set Syntax: SQL"
+			],
+			[
+				"lorem",
+				"Snippet: Lorem ipsum"
+			],
+			[
+				"lore",
+				"Snippet: Lorem ipsum"
+			],
+			[
+				"rei",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"pret",
+				"HTMLPrettify"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Install Package Control"
+			]
+		],
+		"width": 555.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/vitor/Documentos/playground/crytopals",
+		"/home/vitor/Documentos/playground/crytopals/src"
+	],
+	"file_history":
+	[
+		"/home/vitor/Documentos/playground/crytopals/src/lib.rs",
+		"/home/vitor/Documentos/playground/crytopals/src/main.rs",
+		"/home/vitor/Documentos/gitlab/website/index.html",
+		"/home/vitor/Documentos/gitlab/website/assets/css/styles.css",
+		"/home/vitor/Documentos/playground/cryptopals/challenge1-set1.rs",
+		"/home/vitor/Documentos/.vitor/agdesouza/meta",
+		"/home/vitor/Documentos/gitlab/academia/base/api/config/cache.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/config/session.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/config/jwt.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/vendor/illuminate/auth/TokenGuard.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/vendor/tymon/jwt-auth/src/Http/Parser/AuthHeaders.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/app/Providers/AuthServiceProvider.php",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/services/http.js",
+		"/home/vitor/Documentos/gitlab/academia/base/api/config/auth.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/composer.json",
+		"/home/vitor/Documentos/gitlab/academia/base/api/vendor/laravel/lumen-framework/src/Routing/Controller.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/vendor/laravel/lumen-framework/src/Routing/ProvidesConvenienceMethods.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/vendor/tymon/jwt-auth/src/Commands/JWTGenerateCommand.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/app/helpers.php",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/main.js",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/resources/Usuarios.js",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/components/Usuarios/Preferencias.vue",
+		"/home/vitor/Documentos/gitlab/academia/base/api/routes/web.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/app/Http/Controllers/UsuariosController.php",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/router.js",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/components/Shell/TopbarMenuUsuario.vue",
+		"/home/vitor/Documentos/gitlab/academia/base/backup.sh",
+		"/tmp/teste.sql",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/components/Alunos/Debitos.vue",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/components/Elements/GenericModal.vue",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/components/Pagamentos/Adiantado.vue",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/components/Alunos/HistoricoFinanceiro.vue",
+		"/home/vitor/Documentos/gitlab/academia/base/api/app/Http/Controllers/DebitosController.php",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/resources/Alunos.js",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/components/Alunos/View.vue",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/components/Alunos/AlunosDevedores.vue",
+		"/home/vitor/Documentos/gitlab/academia/base/api/tests/Business/DebitosTest.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/app/Business/Debito.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/database/factories/ModelFactory.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/tests/Business",
+		"/home/vitor/Documentos/gitlab/academia/base/api/tests/Controllers/DebitosControllerTest.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/app/Http/Middleware/Academia.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/bootstrap/app.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/app/Http/Controllers/AlunosController.php",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/components/Shell/Topbar.vue",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/store/index.js",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/store/mutations.js",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/store/getters.js",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/store/state.js",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/store/actions.js",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/components/Sidenav/Sidenav.vue",
+		"/home/vitor/Documentos/gitlab/academia/base/api/app/Http/Controllers/FeedbacksController.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/database/migrations/2017_09_25_234133_Feedback.php",
+		"/home/vitor/Documentos/gitlab/academia/base/api/app/Models/Feedback.php",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/components/Sidenav/List.vue",
+		"/home/vitor/Documentos/gitlab/academia/base/front/src/resources/Feedbacks.js",
+		"/home/vitor/Documentos/gitlab/academia/base/front/package.json",
+		"/home/vitor/Documentos/playground/hackaton-intercontinental/ml.py",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/estrutura/instalacao.sql",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/docker/plugin_guarda_2/func_atendimentos_pluginguardamunicipal.php",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/docker/plugin_guarda_2/ouv1_cadatendimentoguardamunicipal.RPC.php",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/fontes/ouv1_cadatendimentoguardamunicipal.RPC.php",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/docker/plugin_guarda_2/scripts/PluginGuardaMunicipal.js",
+		"/home/vitor/.config/sublime-text-3/Packages/User/Package Control.sublime-settings",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/fontes/ouv1_cadatendimentoguardamunicipal001.php",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/docker/plugin_guarda_2/ouv1_cadatendimentoguardamunicipal001.php",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/fontes/scripts/PluginGuardaMunicipal.js",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/fontes/func_atendimentos_pluginguardamunicipal.php",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/docker/plugin_guarda_2/libs/db_stdlib.php",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/docker/plugin_guarda_2/func_cgm.php",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/docker/plugin_guarda_2/funcoes/db_func_abatimentoarreckey.php",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/docker/plugin_guarda_2/func_ouvidoriaatendimentoprocesso.php",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/docker/plugin_guarda_2/extension/config/application.default.php",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/docker/plugin_guarda_2/ouv1_ouvidor003.php",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/docker/plugin_guarda_2/forms/db_frmouvidor.php",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/docker/plugin_guarda_2/scripts/scripts.js",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/docker/plugin_guarda_2/scripts/widgets/DBLookUp.widget.js",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/docker/plugin_guarda_2/libs/db_conn.php",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/docker/plugin_guarda_2/abrir.php",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/docker/plugin_guarda_2/func_rhpessoal.php",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/fontes/scripts/PluginGuardaMunicipalEnvolvidos.js",
+		"/home/vitor/Documentos/gitlab/plugin-guarda-municipal/project.sublime-project",
+		"/home/vitor/Documentos/gitlab/website/index.php",
+		"/home/vitor/Downloads/logo.svg",
+		"/home/vitor/.config/sublime-text-3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"/home/vitor/Documentos/gitlab/filmmelier/html/views/filmes/filme-detalhes.html",
+		"/home/vitor/Documentos/gitlab/filmmelier/html/views/templates/owl-carousel/filmes.html",
+		"/home/vitor/Documentos/gitlab/filmmelier/html/views/filmes/slide-carousel-filmes.html",
+		"/home/vitor/Documentos/gitlab/filmmelier/html/controllers/filmeDetalheCtrl.js",
+		"/home/vitor/Documentos/gitlab/filmmelier/html/controllers/filmesCtrl.js",
+		"/home/vitor/Documentos/gitlab/filmmelier/html/controllers/homeCtrl.js",
+		"/home/vitor/Documentos/gitlab/filmmelier/html/views/home/slide-carousel-home.html",
+		"/home/vitor/Documentos/gitlab/filmmelier/html/assets/css/style.css",
+		"/home/vitor/Documentos/gitlab/filmmelier/ativsys/app/models/film.js",
+		"/home/vitor/Documentos/gitlab/filmmelier/ativsys/public/views/novo-filme.html",
+		"/home/vitor/Documentos/gitlab/filmmelier/ativsys/public/views/filmes-editar.html",
+		"/home/vitor/Documentos/gitlab/filmmelier/ativsys/public/assets/css/style.css",
+		"/home/vitor/Documentos/gitlab/filmmelier/ativsys/serveradm.js",
+		"/home/vitor/Documentos/gitlab/filmmelier/ativsys/public/controllers/filmesDetalhesCtrl.js",
+		"/home/vitor/Documentos/gitlab/filmmelier/ativsys/public/views/itunes.html",
+		"/home/vitor/Documentos/gitlab/filmmelier/ativsys/public/controllers/filmesCtrl.js",
+		"/home/vitor/Documentos/gitlab/filmmelier/ativsys/00_fix.js",
+		"/home/vitor/Documentos/gitlab/filmmelier/ativsys/public/views/listas.html",
+		"/home/vitor/Documentos/gitlab/filmmelier/ativsys/server.js",
+		"/home/vitor/Documentos/gitlab/filmmelier/ativsys/app/models/lista.js",
+		"/home/vitor/Documentos/gitlab/filmmelier/ativsys/public/controllers/listasCtrl.js",
+		"/home/vitor/Documentos/gitlab/filmmelier/ativsys/public/services/listasAPIService.js",
+		"/home/vitor/Documentos/gitlab/filmmelier/html/value/configValue.js",
+		"/home/vitor/Documentos/gitlab/filmmelier/ativsys/public/value/configValues.js",
+		"/home/vitor/Documentos/gitlab/filmmelier/ativsys/package.json"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 106.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			": usize",
+			"65 + ",
+			"101101",
+			"fn",
+			"str"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 42.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 110.0
+	},
+	"output.vi_out":
+	{
+		"height": 110.0
+	},
+	"pinned_build_system": "",
+	"project": "cryptopals.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"authhead",
+				"api/vendor/tymon/jwt-auth/src/Http/Parser/AuthHeaders.php"
+			],
+			[
+				"providesconveniencemethods",
+				"api/vendor/laravel/lumen-framework/src/Routing/ProvidesConvenienceMethods.php"
+			],
+			[
+				"controll",
+				"api/vendor/laravel/lumen-framework/src/Routing/Controller.php"
+			],
+			[
+				"api/app/http/controllers/alunoscontroller.php",
+				"api/app/Http/Controllers/AlunosController.php"
+			],
+			[
+				"packa",
+				"front/package.json"
+			],
+			[
+				"api/database/migrations/2017_09_25_234133_feedback.php",
+				"api/database/migrations/2017_09_25_234133_Feedback.php"
+			],
+			[
+				"application",
+				"docker/plugin_guarda_2/extension/config/application.default.php"
+			],
+			[
+				"cadatendimentogua",
+				"docker/plugin_guarda_2/ouv1_cadatendimentoguardamunicipal001.php"
+			],
+			[
+				"pluginguarda",
+				"docker/plugin_guarda_2/scripts/PluginGuardaMunicipal.js"
+			],
+			[
+				"func_atendimentos",
+				"docker/plugin_guarda_2/func_atendimentos_pluginguardamunicipal.php"
+			],
+			[
+				"func_plugina",
+				"fontes/func_atendimentos_pluginguardamunicipal.php"
+			],
+			[
+				"db_func_abatimentoarreckey",
+				"docker/plugin_guarda_2/funcoes/db_func_abatimentoarreckey.php"
+			],
+			[
+				"func_cgm",
+				"docker/plugin_guarda_2/func_cgm.php"
+			],
+			[
+				"ouvidoriaatendimentoprocesso",
+				"docker/plugin_guarda_2/func_ouvidoriaatendimentoprocesso.php"
+			],
+			[
+				"cadtendimento",
+				"docker/plugin_guarda_2/ouv1_cadatendimentoguardamunicipal.RPC.php"
+			],
+			[
+				"applicatio",
+				"docker/plugin_guarda_2/extension/config/application.default.php"
+			],
+			[
+				"db_frmouvidor",
+				"docker/plugin_guarda_2/forms/db_frmouvidor.php"
+			],
+			[
+				"ouv1_ouvidor003.php",
+				"docker/plugin_guarda_2/ouv1_ouvidor003.php"
+			],
+			[
+				"plugingua",
+				"fontes/scripts/PluginGuardaMunicipal.js"
+			],
+			[
+				"dblook",
+				"docker/plugin_guarda_2/scripts/widgets/DBLookUp.widget.js"
+			],
+			[
+				"func_rhpessoa",
+				"docker/plugin_guarda_2/func_rhpessoal.php"
+			],
+			[
+				"abrir",
+				"docker/plugin_guarda_2/abrir.php"
+			],
+			[
+				"db_conn",
+				"docker/plugin_guarda_2/libs/db_conn.php"
+			],
+			[
+				"film.js",
+				"ativsys/app/models/film.js"
+			],
+			[
+				"style",
+				"html/assets/css/style.css"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Documentos/Projects/academia.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 400.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"rotulolo",
+				"rotulolov"
+			],
+			[
+				"db_lov",
+				"db_lovrot"
+			],
+			[
+				"db_lo",
+				"db_lovrot"
+			],
+			[
+				"db_lovrot",
+				"db_lovrot"
+			],
+			[
+				"rotulolov",
+				"rotulolov"
+			],
+			[
+				"js_OpenJane",
+				"js_OpenJanelaIframe"
+			]
+		],
+		"width": 1271.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+		"_vintageous_reset_during_init": true,
+		"vintage":
+		{
+			"_cmdline_cd": "/home/vitor/Documentos/playground/crytopals/src"
+		}
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 331.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
