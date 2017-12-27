@@ -5,7 +5,8 @@ use cryptopals::lib;
 fn main() {
 
   challenge1();
-  challenge2();
+  // challenge2();
+  challenge3();
   
 }
 
@@ -29,4 +30,17 @@ fn challenge2() {
   
   assert_eq!(lib::hex2bin(hex_expected_result), encrypted);
   assert_eq!(hex_expected_result, lib::bin2hex(&encrypted));
+}
+
+fn challenge3() {
+
+  let input = &lib::hex2bin("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736");
+  let keys = "abcdefghijklmnopqrstuvxwyzABCDEFGHIJKLMNOPQRSTUVXWYZ".chars();
+
+  for key in keys {
+    println!("{:?} - {:?}", key, lib::cipher_xor(input, &key.to_string()));
+  } 
+
+  // resposta esta no char x ou no X, descobrir como saber o certo via codigo
+
 }

@@ -86,15 +86,23 @@ pub mod lib {
     let bytes1: &[u8] = input.as_bytes();
     let bytes2: &[u8] = key.as_bytes();
     let mut result: Vec<u8> = vec![];
+    let mut index: usize = 0;
 
-    let iter = bytes1.iter().zip(bytes2);
+    for v in bytes1 {
 
-    for (a,b) in iter {
-      let number = a ^ b;
-      result.push(number);      
+      if bytes2.get(index).is_none() {
+        index = 0;
+      }
+
+      let operand = bytes2.get(index).unwrap();
+      let number = v ^ operand;
+     
+      result.push(number);
+
+      index = index + 1;
     }
 
-    return String::from_utf8(result).unwrap();
+    String::from_utf8(result).unwrap()
   }
 
 }
