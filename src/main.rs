@@ -5,12 +5,13 @@ use cryptopals::lib;
 fn main() {
 
   challenge1();
-  // challenge2();
+  challenge2();
   challenge3();
   
 }
 
 fn challenge1() {
+  println!("Challenge - 1");
   let input = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d";
   let output = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t";
 
@@ -20,6 +21,7 @@ fn challenge1() {
 }
 
 fn challenge2() {
+  println!("Challenge - 2");
 
   let input = &lib::hex2bin("1c0111001f010100061a024b53535009181c");
   let key = &lib::hex2bin("686974207468652062756c6c277320657965");
@@ -33,14 +35,30 @@ fn challenge2() {
 }
 
 fn challenge3() {
+  println!("Challenge - 3");
 
   let input = &lib::hex2bin("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736");
   let keys = "abcdefghijklmnopqrstuvxwyzABCDEFGHIJKLMNOPQRSTUVXWYZ".chars();
 
+  let mut best_score: i8 = -128;
+  let mut phrase: String = String::from("");
+
   for key in keys {
-    println!("{:?} - {:?}", key, lib::cipher_xor(input, &key.to_string()));
+    let cipher = lib::cipher_xor(input, &key.to_string());
+    let words: Vec<&str> = cipher.split(' ').collect();
+
+    let mut phrase_score: i8 = 0;
+
+    for word in &words {
+      phrase_score += lib::calc_word_score(word);
+    }
+
+    if phrase_score > best_score {
+      best_score = phrase_score;
+      phrase = cipher.clone();
+    }
+
   } 
 
-  // resposta esta no char x ou no X, descobrir como saber o certo via codigo
-
+  println!("  BRUTE FORCE: {:?}", phrase);  
 }
