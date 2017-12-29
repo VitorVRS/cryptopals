@@ -1,7 +1,9 @@
+#[macro_use] 
+extern crate lazy_static;
+
 pub mod lib {
 
   extern crate regex;
-
 
   // trasnforms an hex encoded string into plain text string
   pub fn hex2bin(input: &str) -> String {
@@ -111,26 +113,29 @@ pub mod lib {
   pub fn calc_word_score(input: &str) -> i8 {
     let word = input.to_lowercase();
 
+    lazy_static! {
+        static ref re1: regex::Regex = regex::Regex::new(r"[^a-z']").unwrap();
+        static ref re2: regex::Regex = regex::Regex::new(r"[aeiou]").unwrap();
+        static ref re3: regex::Regex = regex::Regex::new(r"^.*[^aeiou']{3}$").unwrap();
+        static ref re4: regex::Regex = regex::Regex::new(r"[^aeiou']{4}").unwrap();
+        static ref re5: regex::Regex = regex::Regex::new(r"[aeiou]{3}").unwrap();
+    }
+
     let mut score: i8 = 0;
 
     // se tiver caracteres especiais = -10
-    let re1 = regex::Regex::new(r"[^a-z']").unwrap();
     if re1.is_match(&word) { score = score - 10; }
 
     // se nao tiver vogais = -10
-    let re2 = regex::Regex::new(r"[aeiou]").unwrap();
     if !re2.is_match(&word) { score = score - 10; }
 
     // se terminar com tres consoantes = -1
-    let re3 = regex::Regex::new(r"^.*[^aeiou']{3}$").unwrap();
     if re3.is_match(&word) { score = score - 1; }
 
     // se terminar com 4 consoantes = -4
-    let re4 = regex::Regex::new(r"[^aeiou']{4}").unwrap();
     if re4.is_match(&word) { score = score - 4; }
 
     // se tiver 3 vogais juntas = -5
-    let re5 = regex::Regex::new(r"[aeiou]{3}").unwrap();
     if re5.is_match(&word) { score = score - 5; }
 
     score
