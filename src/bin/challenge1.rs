@@ -1,6 +1,7 @@
 extern crate cryptopals;
 
 use cryptopals::lib;
+use cryptopals::base64;
 
 fn main() {
 
@@ -10,7 +11,7 @@ fn main() {
 
   let phrase = lib::hex2bin(&input);
   assert_eq!(input, lib::bin2hex(&phrase));
-  assert_eq!(output, lib::base64encode(&phrase));
+  assert_eq!(output, base64::encode(&phrase));
 
   println!("Done!");
   
