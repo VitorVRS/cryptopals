@@ -1,8 +1,8 @@
-pub fn encode(input: &str) -> String {
+pub fn encode(input: &[u8]) -> String {
 
   let alphabet: Vec<char> = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".chars().collect();
 
-  let bytes: Vec<u8> = input.as_bytes().into();
+  let bytes: Vec<u8> = input.into();
   let mut result: Vec<char> = vec![];
 
   for chunk in bytes.chunks(3) {

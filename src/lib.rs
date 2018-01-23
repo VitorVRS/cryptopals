@@ -2,7 +2,6 @@
 extern crate lazy_static;
 
 pub mod base64;
-pub mod HexVector;
 
 pub mod lib {
 
@@ -10,7 +9,7 @@ pub mod lib {
   extern crate ascii;
 
   // trasnforms an hex encoded string into plain text string
-  pub fn hex2bin(input: &str) -> String {
+  pub fn hex2bin(input: &str) -> Vec<u8> {
 
     let bytes: Vec<char> = input.chars().collect();
     let mut result: Vec<u8> = vec![];
@@ -26,28 +25,25 @@ pub mod lib {
       result.push(number);
     }
 
-    unsafe {
-      ascii::AsciiString::from_ascii_unchecked(result).into()
-    }
+    result
   }
 
   // transforms an string into hex encoded string
-  pub fn bin2hex(input: &str) -> String {
+  pub fn bin2hex(input: &[u8]) -> String {
 
-    let bytes: &[u8] = input.as_bytes();
     let mut result: String = String::from("");
 
-    for byte in bytes {
+    for byte in input {
       result.push_str(&format!("{:x}", byte));
     }
 
     result
   }
 
-  pub fn cipher_xor(input: &str, key: &str) -> String {
+  pub fn cipher_xor(input: &[u8], key: &[u8]) -> Vec<u8> {
 
-    let bytes1: &[u8] = input.as_bytes();
-    let bytes2: &[u8] = key.as_bytes();
+    let bytes1 = input;
+    let bytes2 = key;
     let mut result: Vec<u8> = vec![];
     let mut index: usize = 0;
 
@@ -65,9 +61,7 @@ pub mod lib {
       index = index + 1;
     }
 
-    unsafe {
-      ascii::AsciiString::from_ascii_unchecked(result).into()
-    }
+    result
   }
 
   pub fn calc_word_score(input: &str) -> i8 {
@@ -101,16 +95,18 @@ pub mod lib {
     score
   }
 
-  pub fn brute_force_single_byte_cipher_xor(input: &str) -> (i8, String) {
+  pub fn brute_force_single_byte_cipher_xor(input: Vec<u8>) -> (i8, Vec<u8>) {
 
-    let keys = "abcdefghijklmnopqrstuvxwyzABCDEFGHIJKLMNOPQRSTUVXWYZ".chars();
+    // let keys = "abcdefghijklmnopqrstuvxwyzABCDEFGHIJKLMNOPQRSTUVXWYZ0123456789".chars();
 
     let mut best_score: i8 = -128;
-    let mut phrase: String = String::from("");
+    let mut bytes: Vec<u8> = vec![];
 
-    for key in keys {
-      let cipher = cipher_xor(input, &key.to_string());
-      let words: Vec<&str> = cipher.split(' ').collect();
+    for key in 0..255 {
+      let cipher = cipher_xor(&input, &vec![key]);
+      let phrase = String::from_utf8_lossy(&cipher);
+      println!("{:?} - {:?}", key, phrase);
+      let words: Vec<&str> = phrase.split(' ').collect();
 
       let mut phrase_score: i8 = 0;
 
@@ -120,12 +116,11 @@ pub mod lib {
 
       if phrase_score > best_score {
         best_score = phrase_score;
-        phrase = cipher.clone();
+        bytes = phrase.as_bytes().into();
       }
-
     } 
 
-    (best_score, phrase)
+    (best_score, bytes)
   }
 
 }
