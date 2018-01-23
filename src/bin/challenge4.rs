@@ -18,6 +18,9 @@ fn main() {
     return;
   }
 
+  let mut best_score = -999;
+  let mut best_phrase = vec![];
+
   for line in contents.lines() {
     // println!("{:?}", line);
     let x = lib::hex2bin(line);
@@ -26,13 +29,14 @@ fn main() {
     let score = r.0;
     let bytes = r.1;
 
-    break;
-    if r.0 != 0 {
+    if score > best_score {
+      best_score = score;
+      best_phrase = bytes.clone();
       // println!("{:?} - {:?}", score, String::from_utf8_lossy(&bytes));
-      continue;
     }
 
   }
+  println!("{:?} - {:?}", best_score, String::from_utf8_lossy(&best_phrase));
 
   println!("Done!");
   

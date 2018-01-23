@@ -105,7 +105,6 @@ pub mod lib {
     for key in 0..255 {
       let cipher = cipher_xor(&input, &vec![key]);
       let phrase = String::from_utf8_lossy(&cipher);
-      println!("{:?} - {:?}", key, phrase);
       let words: Vec<&str> = phrase.split(' ').collect();
 
       let mut phrase_score: i8 = 0;
@@ -114,6 +113,7 @@ pub mod lib {
         phrase_score += calc_word_score(word);
       }
 
+//      println!("{:?} - {:?}", phrase_score, phrase);
       if phrase_score > best_score {
         best_score = phrase_score;
         bytes = phrase.as_bytes().into();
