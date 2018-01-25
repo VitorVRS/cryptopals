@@ -18,21 +18,20 @@ fn main() {
     return;
   }
 
-  let mut best_score = -999;
+  let mut best_score: u32 = 99999999;
   let mut best_phrase = vec![];
 
   for line in contents.lines() {
-    // println!("{:?}", line);
+    
     let x = lib::hex2bin(line);
     let r = lib::brute_force_single_byte_cipher_xor(x);
 
     let score = r.0;
     let bytes = r.1;
 
-    if score > best_score {
+    if score < best_score {
       best_score = score;
       best_phrase = bytes.clone();
-      // println!("{:?} - {:?}", score, String::from_utf8_lossy(&bytes));
     }
 
   }

@@ -1,6 +1,3 @@
-#[macro_use] 
-extern crate lazy_static;
-
 pub mod base64;
 
 pub mod lib {
@@ -64,61 +61,47 @@ pub mod lib {
     result
   }
 
-  pub fn calc_word_score(input: &str) -> i8 {
-    let word = input;
+  pub fn calc_char_score(letter: char) -> u32 {
 
-    lazy_static! {
-        static ref RE1: regex::Regex = regex::Regex::new(r"[^a-z'A-Z]").unwrap();
-        static ref RE2: regex::Regex = regex::Regex::new(r"[aeiouAEIOU]").unwrap();
-        static ref RE3: regex::Regex = regex::Regex::new(r"^.*[^aeiouAEIOU']{3}$").unwrap();
-        static ref RE4: regex::Regex = regex::Regex::new(r"[^aeiouAEIOU']{4}").unwrap();
-        static ref RE5: regex::Regex = regex::Regex::new(r"[aeiouAEIOU]{3}").unwrap();
+    let english_letter_frequency = "etaonrishd .,\nlfcmugypwbvkjxqz-_!?'\"/1234567890*";
+    let mut uppercase_punishment = 0;
+    let letter_lower = letter.to_lowercase().to_string();
+    let mut score: u32 = 255;
+
+    if letter.is_uppercase() {
+      uppercase_punishment = 3;
     }
 
-    let mut score: i8 = 0;
+    let position = english_letter_frequency.find(&letter_lower);
 
-    // se tiver caracteres especiais = -10
-    if RE1.is_match(&word) { score = score - 10; }
-
-    // SE nao tiver vogais = -10
-    if !RE2.is_match(&word) { score = score - 10; }
-
-    // se terminar com tres consoantes = -1
-    if RE3.is_match(&word) { score = score - 1; }
-
-    // SE terminar com 4 consoantes = -4
-    if RE4.is_match(&word) { score = score - 4; }
-
-    // se tiver 3 vogais juntas = -5
-    if RE5.is_match(&word) { score = score - 5; }
+    if position.is_some() {
+      score = uppercase_punishment + (position.unwrap() as u32 * 2);      
+    }
 
     score
   }
 
-  pub fn brute_force_single_byte_cipher_xor(input: Vec<u8>) -> (i8, Vec<u8>) {
+  pub fn brute_force_single_byte_cipher_xor(input: Vec<u8>) -> (u32, Vec<u8>) {
 
-    // let keys = "abcdefghijklmnopqrstuvxwyzABCDEFGHIJKLMNOPQRSTUVXWYZ0123456789".chars();
-
-    let mut best_score: i8 = -128;
+    let mut best_score: u32 = 9999999;
     let mut bytes: Vec<u8> = vec![];
 
+    // iterate over all 'ascii' chars
     for key in 0..255 {
-      let cipher = cipher_xor(&input, &vec![key]);
-      let phrase = String::from_utf8_lossy(&cipher);
-      let words: Vec<&str> = phrase.split(' ').collect();
 
-      let mut phrase_score: i8 = 0;
+      let cipher = cipher_xor(&input, &vec![key]);      
+      let mut score: u32 = 0;
 
-      for word in &words {
-        phrase_score += calc_word_score(word);
+      for letter in &cipher {
+        score += calc_char_score(char::from(*letter));
       }
 
-//      println!("{:?} - {:?}", phrase_score, phrase);
-      if phrase_score > best_score {
-        best_score = phrase_score;
-        bytes = phrase.as_bytes().into();
+      if score < best_score {
+        best_score = score;
+        bytes = cipher.clone();
       }
     } 
+
 
     (best_score, bytes)
   }
