@@ -28,7 +28,7 @@ pub mod lib {
     let mut result: String = String::from("");
 
     for byte in input {
-      result.push_str(&format!("{:x}", byte));
+      result.push_str(&format!("{:02x}", byte));
     }
 
     result
@@ -46,7 +46,7 @@ pub mod lib {
       if bytes2.get(index).is_none() {
         index = 0;
       }
-// 
+  
       let operand = bytes2.get(index).unwrap();
       let number = v ^ operand;
      
