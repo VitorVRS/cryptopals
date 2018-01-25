@@ -2,9 +2,6 @@ pub mod base64;
 
 pub mod lib {
 
-  extern crate regex;
-  extern crate ascii;
-
   // trasnforms an hex encoded string into plain text string
   pub fn hex2bin(input: &str) -> Vec<u8> {
 

@@ -35,7 +35,7 @@ fn main() {
     }
 
   }
-  println!("{:?} - {:?}", best_score, String::from_utf8_lossy(&best_phrase));
+  println!("  BRUTE FORCE: {:?} - {:?}", best_score, String::from_utf8_lossy(&best_phrase));
 
   println!("Done!");
   
