@@ -4,6 +4,8 @@ use cryptopals::lib;
 use std::fs::File;
 use std::io::prelude::*;
 
+const MAX_THREADS: usize = 10;
+
 fn main() {
 
   println!("Challenge - 4... ");
@@ -19,22 +21,36 @@ fn main() {
   }
 
   let mut best_score: u32 = 99999999;
-  let mut best_phrase = vec![];
+  let mut best_phrase = vec![];  
+  let mut lines = contents.lines();
 
-  for line in contents.lines() {
-    
-    let x = lib::hex2bin(line);
-    let r = lib::brute_force_single_byte_cipher_xor(x);
+  loop {
 
-    let score = r.0;
-    let bytes = r.1;
+    let line_slice = (&mut lines).take(40);
+    let mut should_break: bool = true;
 
-    if score < best_score {
-      best_score = score;
-      best_phrase = bytes.clone();
+    for line in line_slice {
+      
+      should_break = false;
+
+      let x = lib::hex2bin(line);
+      let r = lib::brute_force_single_byte_cipher_xor(x);
+
+      let score = r.0;
+      let bytes = r.1;
+
+      if score < best_score {
+        best_score = score;
+        best_phrase = bytes.clone();
+      }
+
     }
 
+    if should_break {
+      break;
+    }
   }
+
   println!("  BRUTE FORCE: {:?} - {:?}", best_score, String::from_utf8_lossy(&best_phrase));
 
   println!("Done!");
