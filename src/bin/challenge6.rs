@@ -5,7 +5,11 @@ use std::fs::File;
 use std::io::prelude::*;
 
 fn main() {
-  
+
+  let a = "this is a test";
+  let b = "wokka wokka!!!";
+  println!("distance: {:?}", hamming::distance(a.as_bytes(), b.as_bytes()));
+
   let filepath = "resources/challenge6/file.txt";
 
   let mut file = File::open(filepath).unwrap();
