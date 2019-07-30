@@ -1,14 +1,14 @@
 extern crate cryptopals;
 
-use cryptopals::hamming;
+use cryptopals::base64;
+// use cryptopals::hamming;
 use std::fs::File;
 use std::io::prelude::*;
 
 fn main() {
-
-  let a = "this is a test";
-  let b = "wokka wokka!!!";
-  println!("distance: {:?}", hamming::distance(a.as_bytes(), b.as_bytes()));
+  
+  println!("{:?}", base64::encode("vitor".as_bytes()));
+  base64::decode("dml0b3I=");
 
   let filepath = "resources/challenge6/file.txt";
 
