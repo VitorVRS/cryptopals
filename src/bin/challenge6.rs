@@ -1,7 +1,7 @@
 extern crate cryptopals;
 
 use cryptopals::base64;
-// use cryptopals::hamming;
+use cryptopals::lib;
 use std::fs::File;
 use std::io::prelude::*;
 
@@ -16,15 +16,17 @@ fn main() {
   if result.is_err() {
     return;
   } 
-  
-  // TODO: define KEYSIZE as a number between 2 and 40 (maybe get the key size as input)
-  let KEYSIZE = 2;
 
-  // hamming::distance(a.as_bytes(), b.as_bytes())
+  // decoded data
+  let data = base64::decode(&contents.replace("\n", ""));
   
-  // TODO: take first and second chunk of data, each chunk will KEYSIZE size
-  
-  
+  // pontential keysizes in priority order
+  let key_sizes = lib::find_repeating_xor_keysize(&data);
+  println!("{:?}", key_sizes);
+
+  // TODO get blocks of data KEYSIZE size.
+  // TODO transpose block
+  // for each block, use single char key brute force
 
   println!("Done!");
   

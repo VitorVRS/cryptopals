@@ -3,6 +3,8 @@ pub mod hamming;
 
 pub mod lib {
 
+  use hamming;
+
   // trasnforms an hex encoded string into plain text string
   pub fn hex2bin(input: &str) -> Vec<u8> {
 
@@ -102,6 +104,21 @@ pub mod lib {
 
 
     (best_score, bytes)
+  }
+
+  pub fn find_repeating_xor_keysize(input: &[u8]) -> Vec<(usize, f64)> {
+    let mut result = vec![];
+
+    for keysize in 2..40 {
+      let mut chunks = input.chunks(keysize);
+      let first = chunks.next().unwrap();
+      let second = chunks.next().unwrap();  
+      result.push( (keysize, hamming::distance(first, second)) );
+    }
+
+    result.sort_by(|a, b| a.1.partial_cmp(&b.1).unwrap() );
+
+    result
   }
 
 }

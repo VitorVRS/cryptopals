@@ -64,7 +64,7 @@ pub fn decode(input: &str) -> Vec<u8> {
     let octet3: u32 = chunk[2] as u32;
     let octet4: u32 = chunk[3] as u32;
 
-    println!("DEBUG: o1: {:#b} ; o2: {:#b} ; o3: {:#b} ; o4: {:#b}", octet1, octet2, octet3, octet4);
+    // println!("DEBUG: o1: {:#b} ; o2: {:#b} ; o3: {:#b} ; o4: {:#b}", octet1, octet2, octet3, octet4);
 
     let mut data: u32 = ( octet1 << 18 ) | ( octet2 << 12 ) | ( (0b111111 & octet3) << 6 ) | (0b111111 & octet4);
 
@@ -80,7 +80,7 @@ pub fn decode(input: &str) -> Vec<u8> {
     let sec2 = ( data & 0b00000000_11111111_11111111 ) >> 8;
     let sec3 = data & 0b00000000_00000000_11111111;
 
-    println!("DEBUG: {:#b} ; {:#b}-{:#b}-{:#b}", data, sec1, sec2, sec3);
+    // println!("DEBUG: {:#b} ; {:#b}-{:#b}-{:#b}", data, sec1, sec2, sec3);
 
     // first level padding
     if octet4 != 0x40 {
