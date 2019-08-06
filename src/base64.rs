@@ -45,13 +45,18 @@ pub fn encode(input: &[u8]) -> String {
   result.into_iter().collect()
 }
 
-pub fn decode(input: &str) {
+pub fn decode(input: &str) -> Vec<u8> {
   let alphabet: Vec<char> = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".chars().collect();
   
-  let bytes = input.to_string().into_bytes();
-  let mut result: Vec<char> = vec![];
+  let chars = input.chars();
+  let mut bytes: Vec<u8> = vec![];
+  let mut result: Vec<u8> = vec![];
 
-  // FIXME: map chunks to char index on alphabet, and then extract the three octets
+  for letter in chars {
+    let index = alphabet.iter().position(|&r| r == letter).unwrap();
+    bytes.push(index as u8);
+  }
+
   for chunk in bytes.chunks(4) {
 
     let octet1: u32 = chunk[0] as u32;
@@ -61,22 +66,38 @@ pub fn decode(input: &str) {
 
     println!("DEBUG: o1: {:#b} ; o2: {:#b} ; o3: {:#b} ; o4: {:#b}", octet1, octet2, octet3, octet4);
 
-    let data: u32 = ( octet1 << 18 ) | ( octet2 << 12 ) | ( octet3 << 6 ) | octet4;
+    let mut data: u32 = ( octet1 << 18 ) | ( octet2 << 12 ) | ( (0b111111 & octet3) << 6 ) | (0b111111 & octet4);
+
+    if octet4 == 0x40 {
+      data = data >> 8;
+    }
+
+    if octet3 == 0x40 {
+      // data = data >> 6;
+    }
 
     let sec1 = data >> 16;
     let sec2 = ( data & 0b00000000_11111111_11111111 ) >> 8;
     let sec3 = data & 0b00000000_00000000_11111111;
 
-    println!("DEBUG: {:#b}-{:#b}-{:#b}", sec1, sec2, sec3);
-    result.push(alphabet[sec1 as usize]);
-    result.push(alphabet[sec2 as usize]);
-    result.push(alphabet[sec3 as usize]);
+    println!("DEBUG: {:#b} ; {:#b}-{:#b}-{:#b}", data, sec1, sec2, sec3);
+
+    // first level padding
+    if octet4 != 0x40 {
+      result.push(sec1 as u8);
+    }
+     
+    result.push(sec2 as u8);      
+
+    // second level padding
+    if octet3 != 0x40 {
+      result.push(sec3 as u8);
+    }
+
   }
 
-  println!("INPUT: {:?}", bytes);
-  println!("END: {:?}", result);
+  result
 }
-
 
 // 0b1100100  0b1101101 0b1101100 0b110000
 

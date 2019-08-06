@@ -7,9 +7,6 @@ use std::io::prelude::*;
 
 fn main() {
   
-  println!("{:?}", base64::encode("vitor".as_bytes()));
-  base64::decode("dml0b3I=");
-
   let filepath = "resources/challenge6/file.txt";
 
   let mut file = File::open(filepath).unwrap();
@@ -18,13 +15,11 @@ fn main() {
 
   if result.is_err() {
     return;
-  }
-
-  // TODO: impl base64 decode, to decode file 
+  } 
   
   // TODO: define KEYSIZE as a number between 2 and 40 (maybe get the key size as input)
-  
-  // TODO: impl Hamming distance algorithm
+  let KEYSIZE = 2;
+
   // hamming::distance(a.as_bytes(), b.as_bytes())
   
   // TODO: take first and second chunk of data, each chunk will KEYSIZE size
