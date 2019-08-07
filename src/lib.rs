@@ -76,14 +76,17 @@ pub mod lib {
 
     if position.is_some() {
       score = uppercase_punishment + (position.unwrap() as u32 * 2);      
+    } else {
+      score = score + 1000;
     }
 
     score
   }
 
-  pub fn brute_force_single_byte_cipher_xor(input: Vec<u8>) -> (u32, Vec<u8>) {
+  pub fn brute_force_single_byte_cipher_xor(input: Vec<u8>) -> (u32, Vec<u8>, u8) {
 
     let mut best_score: u32 = 9999999;
+    let mut best_key: u8 = 0;
     let mut bytes: Vec<u8> = vec![];
 
     // iterate over all 'ascii' chars
@@ -92,18 +95,21 @@ pub mod lib {
       let cipher = cipher_xor(&input, &vec![key]);      
       let mut score: u32 = 0;
 
+
       for letter in &cipher {
         score += calc_char_score(char::from(*letter));
       }
+      // println!("DEBUG: KEY: {:?} - SCORE: {:?} - DATA: {:?}", key, score, String::from_utf8_lossy(&cipher));
 
       if score < best_score {
         best_score = score;
+        best_key = key;
         bytes = cipher.clone();
       }
     } 
 
 
-    (best_score, bytes)
+    (best_score, bytes, best_key)
   }
 
   pub fn find_repeating_xor_keysize(input: &[u8]) -> Vec<(usize, f64)> {
