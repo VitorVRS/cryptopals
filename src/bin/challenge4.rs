@@ -4,8 +4,6 @@ use cryptopals::lib;
 use std::fs::File;
 use std::io::prelude::*;
 
-const MAX_THREADS: usize = 10;
-
 fn main() {
 
   println!("Challenge - 4... ");
@@ -20,7 +18,7 @@ fn main() {
     return;
   }
 
-  let mut best_score: u32 = 99999999;
+  let mut best_score: f32 = 0.0;
   let mut best_phrase = vec![];  
   let mut lines = contents.lines();
 
@@ -39,7 +37,7 @@ fn main() {
       let score = r.0;
       let bytes = r.1;
 
-      if score < best_score {
+      if score > best_score {
         best_score = score;
         best_phrase = bytes.clone();
       }

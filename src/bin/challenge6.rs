@@ -22,40 +22,43 @@ fn main() {
   
   // pontential keysizes in priority order
   let key_sizes = lib::find_repeating_xor_keysize(&data);
-  println!("{:?} - {:?} - {:?}", key_sizes[0], key_sizes[1], key_sizes[2]);
 
-  // TODO get blocks of data KEYSIZE size.
-  let KEYSIZE = key_sizes[0].0;
-  let chunks = data.chunks_exact(KEYSIZE);
-  let chunk_remainder = chunks.remainder();
+  let keysize = key_sizes[0].0;
+  let chunks: Vec<&[u8]> = data.chunks_exact(keysize).collect();
+  let chunk_count = chunks.clone().len();
+
   let mut blocks: Vec<Vec<u8>> = Vec::new();
 
-  // iniatilize vector, for the transposed blocks
-  let mut count = 0;
-  while count < KEYSIZE {
+  // transpose blocks
+  let mut index = 0;
+  while index < keysize {
     let mut item: Vec<u8> = Vec::new();
-    blocks.push(item);
-    count += 1;
-  }
-  
-  // while reading the blocks, transpose them
-  for chunk in chunks {
-    let mut index = 0;
-    while index < KEYSIZE {
-      blocks[index].push(chunk[index]);
-      index += 1;
+
+    let mut chunk_index = 0;
+    while chunk_index < chunk_count {
+        item.push(chunks[chunk_index][index]);
+        chunk_index += 1;
     }
-  }
-  // println!("REMAINING DATA: {:?}", chunk_remainder);
+
+    blocks.push(item);
+    index += 1;
+  } 
 
   // for each block, use single char key brute force
   let mut key: Vec<u8> = Vec::new();
+  let mut index = 0;
   for block in blocks {
     let broke = lib::brute_force_single_byte_cipher_xor(block);
-    // println!("KEY: {:?} - SCORE: {:?}", String::from_utf8_lossy(&vec![broke.2]), broke.0);
-    key.push(broke.2)
+    println!("DATA: {:?} - KEY: {:?} - BLOCK: {:?}",
+        String::from_utf8_lossy(&broke.1),
+        String::from_utf8_lossy(&vec![broke.2]),
+        index
+    );
+    key.push(broke.2);
+    index += 1;
   }
 
+  println!("{:?}", String::from_utf8_lossy(&key));
   println!("{:?}", String::from_utf8_lossy(&lib::cipher_xor(&data, &key)));
   println!("Done!");
   

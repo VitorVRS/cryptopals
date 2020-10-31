@@ -1,4 +1,4 @@
-pub fn distance(a: &[u8], b: &[u8]) -> f64 {
+pub fn distance(a: &[u8], b: &[u8]) -> u8 {
   let mut result = 0;
 
   let size = a.len();
@@ -9,6 +9,5 @@ pub fn distance(a: &[u8], b: &[u8]) -> f64 {
     index += 1;
   }
 
-  // size * 8 means that we need the count as n of bits
-  result as f64 / (size * 8) as f64
+  result as u8
 }
