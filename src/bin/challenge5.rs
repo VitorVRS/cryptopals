@@ -3,7 +3,6 @@ extern crate cryptopals;
 use cryptopals::lib;
 
 fn main() {
-
     print!("Challenge - 5... ");
 
     let key = "ICE";
@@ -15,5 +14,4 @@ I go crazy when I hear a cymbal";
     assert_eq!(expected, &lib::bin2hex(&cipher));
 
     println!("Done!");
-
 }

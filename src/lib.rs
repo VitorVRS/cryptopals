@@ -1,6 +1,6 @@
+pub mod aes;
 pub mod base64;
 pub mod hamming;
-pub mod aes;
 
 pub mod lib {
 
@@ -8,12 +8,10 @@ pub mod lib {
 
     // trasnforms an hex encoded string into plain text string
     pub fn hex2bin(input: &str) -> Vec<u8> {
-
         let bytes: Vec<char> = input.chars().collect();
         let mut result: Vec<u8> = vec![];
 
         for chunk in bytes.chunks(2) {
-
             // arrumar erro de conversao de letra para numero
             let first = chunk[0].to_digit(16).unwrap();
             let second = chunk[1].to_digit(16).unwrap();
@@ -28,7 +26,6 @@ pub mod lib {
 
     // transforms an string into hex encoded string
     pub fn bin2hex(input: &[u8]) -> String {
-
         let mut result: String = String::from("");
 
         for byte in input {
@@ -39,14 +36,12 @@ pub mod lib {
     }
 
     pub fn cipher_xor(input: &[u8], key: &[u8]) -> Vec<u8> {
-
         let bytes1 = input;
         let bytes2 = key;
         let mut result: Vec<u8> = vec![];
         let mut index: usize = 0;
 
         for v in bytes1 {
-
             if bytes2.get(index).is_none() {
                 index = 0;
             }
@@ -64,33 +59,9 @@ pub mod lib {
     pub fn calc_char_score(letter: char) -> f32 {
         let english_letter_frequency = " etaoinshrdlcumwfgypbvkjxqz";
         let letter_scores = [
-            15.0,
-            8.167,
-            1.492,
-            2.782,
-            4.253,
-            12.70,
-            2.228,
-            2.015,
-            6.094,
-            6.966,
-            0.153,
-            0.772,
-            4.025,
-            2.406,
-            6.749,
-            7.507,
-            1.929,
-            0.095,
-            5.987,
-            6.327,
-            9.056,
-            2.758,
-            0.978,
-            2.360,
-            0.150,
-            1.974,
-            0.074,
+            15.0, 8.167, 1.492, 2.782, 4.253, 12.70, 2.228, 2.015, 6.094, 6.966, 0.153, 0.772,
+            4.025, 2.406, 6.749, 7.507, 1.929, 0.095, 5.987, 6.327, 9.056, 2.758, 0.978, 2.360,
+            0.150, 1.974, 0.074,
         ];
         let letter_lower = letter.to_lowercase().to_string();
         let mut score: f32 = 0.0;
@@ -106,17 +77,14 @@ pub mod lib {
     }
 
     pub fn brute_force_single_byte_cipher_xor(input: Vec<u8>) -> (f32, Vec<u8>, u8) {
-
         let mut best_score: f32 = 0.0;
         let mut best_key: u8 = 0;
         let mut bytes: Vec<u8> = vec![];
 
         // iterate over all 'ascii' chars
         for key in 0..255 {
-
             let cipher = cipher_xor(&input, &vec![key]);
             let mut score: f32 = 0.0;
-
 
             for letter in &cipher {
                 score += calc_char_score(char::from(*letter));
@@ -161,5 +129,4 @@ pub mod lib {
 
         result
     }
-
 }

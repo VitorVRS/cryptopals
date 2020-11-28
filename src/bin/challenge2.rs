@@ -3,7 +3,6 @@ extern crate cryptopals;
 use cryptopals::lib;
 
 fn main() {
-
     print!("Challenge - 2... ");
 
     let input = &lib::hex2bin("1c0111001f010100061a024b53535009181c");
@@ -17,5 +16,4 @@ fn main() {
     assert_eq!(hex_expected_result, lib::bin2hex(&encrypted));
 
     println!("Done!");
-
 }

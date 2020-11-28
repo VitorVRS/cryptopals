@@ -6,7 +6,6 @@ use std::fs::File;
 use std::io::prelude::*;
 
 fn main() {
-
     let filepath = "resources/challenge6/file.txt";
 
     let mut file = File::open(filepath).unwrap();
@@ -65,5 +64,4 @@ fn main() {
         String::from_utf8_lossy(&lib::cipher_xor(&data, &key))
     );
     println!("Done!");
-
 }

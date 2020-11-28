@@ -1,5 +1,4 @@
 pub fn encode(input: &[u8]) -> String {
-
     let alphabet: Vec<char> = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
         .chars()
         .collect();
@@ -8,7 +7,6 @@ pub fn encode(input: &[u8]) -> String {
     let mut result: Vec<char> = vec![];
 
     for chunk in bytes.chunks(3) {
-
         let mut pad: u8 = 2;
         let octet1: u32 = chunk[0] as u32;
         let mut octet2: u32 = 0;
@@ -62,7 +60,6 @@ pub fn decode(input: &str) -> Vec<u8> {
     }
 
     for chunk in bytes.chunks(4) {
-
         let octet1: u32 = chunk[0] as u32;
         let octet2: u32 = chunk[1] as u32;
         let octet3: u32 = chunk[2] as u32;
@@ -70,8 +67,8 @@ pub fn decode(input: &str) -> Vec<u8> {
 
         // println!("DEBUG: o1: {:#b} ; o2: {:#b} ; o3: {:#b} ; o4: {:#b}", octet1, octet2, octet3, octet4);
 
-        let mut data: u32 = (octet1 << 18) | (octet2 << 12) | ((0b111111 & octet3) << 6) |
-            (0b111111 & octet4);
+        let mut data: u32 =
+            (octet1 << 18) | (octet2 << 12) | ((0b111111 & octet3) << 6) | (0b111111 & octet4);
 
         if octet4 == 0x40 {
             data = data >> 8;
@@ -98,7 +95,6 @@ pub fn decode(input: &str) -> Vec<u8> {
         if octet3 != 0x40 {
             result.push(sec3 as u8);
         }
-
     }
 
     result

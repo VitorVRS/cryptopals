@@ -5,7 +5,6 @@ use std::fs::File;
 use std::io::prelude::*;
 
 fn main() {
-
     println!("Challenge - 4... ");
 
     let filepath = "resources/challenge4/file.txt";
@@ -23,12 +22,10 @@ fn main() {
     let mut lines = contents.lines();
 
     loop {
-
         let line_slice = (&mut lines).take(40);
         let mut should_break: bool = true;
 
         for line in line_slice {
-
             should_break = false;
 
             let x = lib::hex2bin(line);
@@ -41,7 +38,6 @@ fn main() {
                 best_score = score;
                 best_phrase = bytes.clone();
             }
-
         }
 
         if should_break {
@@ -56,5 +52,4 @@ fn main() {
     );
 
     println!("Done!");
-
 }
