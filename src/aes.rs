@@ -1,7 +1,4 @@
-// FOR THE FUTURE VITOR: code seems to be working
-// maybe you should take a loog at the range part of the next keys.
-// TODO: shift_rows
-// TODO: mix_columns
+use std::convert::TryInto;
 
 const NK: usize = 4;
 const NB: usize = 4;
@@ -25,7 +22,7 @@ pub fn cipher<'a>(input: &'a [u8], key: &'a [u8]) -> Vec<u8> {
         println!("SUB_BYTES: {:X?}", state);
         shift_rows(&mut state);
         println!("SHIFT_ROWS: {:X?}", state);
-        // mix_columns(state)
+        mix_columns(&mut state);
         println!("MIX_COLUMNS: {:X?}", state);
         add_round_key(&mut state, &w[(round * NB)..((round + 1) * NB)]); // next four keys
         println!("ROUND_KEY: {:X?}", state);
@@ -41,44 +38,119 @@ pub fn cipher<'a>(input: &'a [u8], key: &'a [u8]) -> Vec<u8> {
     output_state(state)
 }
 
-fn init_state(input: &[u8]) -> Vec<Vec<u8>> {
-    let mut state: Vec<Vec<u8>> = vec![vec![0; 4]; 4];
-    for r in 0..4 {
-        for c in 0..4 {
-            state[r][c] = input[r + 4 * c];
-        }
+// convert an input list to a word list
+// word1 = u32::from_be_bytes( [ input[0], input[1], input[2], input[3] ] )
+// [ word1, word2, word3, word4 ]
+fn init_state(input: &[u8]) -> Vec<u32> {
+    let mut state: Vec<u32> = vec![0; 4];
+    for c in 0..4 {
+        let begin = c * NB;
+        let end = begin + NB;
+        let bytes: [u8; 4] = input[begin..end].try_into().unwrap();
+        state[c] = u32::from_be_bytes(bytes);
     }
     state
 }
 
-fn output_state(state: Vec<Vec<u8>>) -> Vec<u8> {
+// convert a word list to a list of bytes
+// bytes1 = word1.to_be_bytes()
+// [ bytes1[0], bytes1[1], bytes1[2], bytes[3], ... ]
+fn output_state(state: Vec<u32>) -> Vec<u8> {
     let mut output = vec![0; 16];
-    for r in 0..4 {
-        for c in 0..4 {
-            output[r + 4 * c] = state[r][c];
+    for c in 0..4 {
+        let bytes = state[c].to_be_bytes();
+        for i in 0..NB {
+            output[c * NB + i] = bytes[i];
         }
     }
     output
 }
 
-fn add_round_key(state: &mut [Vec<u8>], key: &[u32]) {
-    for r in 0..4 {
-        let key_bytes = key[r].to_be_bytes();
-        for c in 0..4 {
-            state[c][r] ^= key_bytes[c]
-        }
+fn add_round_key(state: &mut [u32], key: &[u32]) {
+    for c in 0..4 {
+        state[c] ^= key[c];
     }
 }
 
-fn sub_bytes(state: &mut [Vec<u8>]) {
-    for r in 0..4 {
-        for c in 0..4 {
-            state[r][c] = SBOX[state[r][c] as usize]
+fn sub_bytes(state: &mut [u32]) {
+    for c in 0..4 {
+        let mut bytes = state[c].to_be_bytes();
+        for i in 0..4 {
+            bytes[i] = SBOX[bytes[i] as usize];
         }
+        state[c] = u32::from_be_bytes(bytes);
     }
 }
 
-fn shift_rows(state: &mut [Vec<u8>]) {}
+fn shift_rows(state: &mut [u32]) {
+    let mut columns = [
+        state[0].to_be_bytes(),
+        state[1].to_be_bytes(),
+        state[2].to_be_bytes(),
+        state[3].to_be_bytes(),
+    ];
+    for r in 0..NB {
+        let mut row = [columns[0][r], columns[1][r], columns[2][r], columns[3][r]];
+        row.rotate_left(r);
+        columns[0][r] = row[0];
+        columns[1][r] = row[1];
+        columns[2][r] = row[2];
+        columns[3][r] = row[3];
+    }
+    state[0] = u32::from_be_bytes(columns[0]);
+    state[1] = u32::from_be_bytes(columns[1]);
+    state[2] = u32::from_be_bytes(columns[2]);
+    state[3] = u32::from_be_bytes(columns[3]);
+}
+
+const MULTIPLICATION_MATRIX: [[u8; 4]; 4] = [
+    [0x02, 0x03, 0x01, 0x01],
+    [0x01, 0x02, 0x03, 0x01],
+    [0x01, 0x01, 0x02, 0x03],
+    [0x03, 0x01, 0x01, 0x02],
+];
+
+fn mix_columns(state: &mut [u32]) {
+    for c in 0..4 {
+        let mut bytes = state[c].to_be_bytes();
+        let mut mixed: [u8; 4] = [0; 4];
+        for i in 0..4 {
+            mixed[i] = dot_product(&mut bytes, &MULTIPLICATION_MATRIX[i]);
+        }
+        state[c] = u32::from_be_bytes(mixed);
+    }
+}
+
+// multiply two vectors: 1x4 X 4x1
+fn dot_product(bytes: &mut [u8], m: &[u8; 4]) -> u8 {
+    let mut result: u8 = 0;
+    for i in 0..4 {
+        result ^= xtime(bytes[i], m[i]);
+    }
+    result
+}
+
+// galois finite field multiplication GF(2^8)
+fn xtime(input1: u8, input2: u8) -> u8 {
+    let mut result: u8 = 0;
+    let mut a = input1;
+    let mut b = input2;
+
+    for _ in 0..8 {
+        if (b & 0x1) != 0 {
+            result ^= a;
+        }
+
+        let is_high_bit_set: bool = (a & 0x80) != 0;
+        a <<= 1;
+        if is_high_bit_set {
+            a ^= 0x1b;
+        }
+        b >>= 1;
+    }
+
+    result
+}
 
 const SBOX: &'static [u8] = &[
     0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76,
