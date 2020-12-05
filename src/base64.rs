@@ -100,11 +100,21 @@ pub fn decode(input: &str) -> Vec<u8> {
     result
 }
 
-// 0b1100100  0b1101101 0b1101100 0b110000
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-//                   00110000
-//             01101100110000
-//       01101101101100110000
-// 01100100
+    #[test]
+    fn encode_1() {
+        let input = "I'm killing your brain like a poisonous mushroom".as_bytes();
+        let expected = String::from("SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t");
+        assert_eq!(encode(input), expected);
+    }
 
-// 01100100101101101100110000
+    #[test]
+    fn decode_1() {
+        let input = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t";
+        let expected = "I'm killing your brain like a poisonous mushroom".as_bytes().to_vec();
+        assert_eq!(decode(input), expected);
+    }
+}
