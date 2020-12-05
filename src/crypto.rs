@@ -1,5 +1,72 @@
-pub fn ecb_aes128_encrypt() -> {
-    // ecb::setup(aes128)
-    // ecb::cipher(key, plaintext)
+use aes;
+
+// add padding to the input  PKCS#5
+// separate input in blocks of 128bits
+
+// ecb::setup(aes128)
+// ecb::cipher(key, plaintext)
+
+pub fn ecb_aes128_encrypt(input: &[u8], key: &[u8]) -> Vec<u8> {
+    assert_eq!(key.len(), 16);
+    assert_eq!(input.len() % 16, 0);
+
+    let mut result = vec![];
+
+    for chunk in input.chunks(16) {
+        result.extend(aes::cipher(chunk, key));
+    }
+
+    result
 }
-pub fn ecb_aes128_decrypt() -> {}
+
+pub fn ecb_aes128_decrypt(input: &[u8], key: &[u8]) -> Vec<u8> {
+    assert_eq!(key.len(), 16);
+    assert_eq!(input.len() % 16, 0);
+
+    let mut result = vec![];
+
+    for chunk in input.chunks(16) {
+        result.extend(aes::decipher(chunk, key));
+    }
+
+    result
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_ecb_aes128_encrypt() {
+        let key = [
+            0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf,
+            0x4f, 0x3c,
+        ];
+        let input = [
+            0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96, 0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93,
+            0x17, 0x2a,
+        ];
+        let expected = vec![
+            0x3a, 0xd7, 0x7b, 0xb4, 0x0d, 0x7a, 0x36, 0x60, 0xa8, 0x9e, 0xca, 0xf3, 0x24, 0x66,
+            0xef, 0x97,
+        ];
+        assert_eq!(ecb_aes128_encrypt(&input, &key), expected);
+    }
+
+    #[test]
+    fn test_ecb_aes128_decrypt() {
+        let key = [
+            0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf,
+            0x4f, 0x3c,
+        ];
+        let input = [
+            0x3a, 0xd7, 0x7b, 0xb4, 0x0d, 0x7a, 0x36, 0x60, 0xa8, 0x9e, 0xca, 0xf3, 0x24, 0x66,
+            0xef, 0x97,
+        ];
+        let expected = vec![
+            0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96, 0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93,
+            0x17, 0x2a,
+        ];
+        assert_eq!(ecb_aes128_decrypt(&input, &key), expected);
+    }
+}

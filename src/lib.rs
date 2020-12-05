@@ -1,5 +1,6 @@
 pub mod aes;
 pub mod base64;
+pub mod crypto;
 pub mod hamming;
 
 pub mod lib {

@@ -107,14 +107,17 @@ mod tests {
     #[test]
     fn encode_1() {
         let input = "I'm killing your brain like a poisonous mushroom".as_bytes();
-        let expected = String::from("SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t");
+        let expected =
+            String::from("SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t");
         assert_eq!(encode(input), expected);
     }
 
     #[test]
     fn decode_1() {
         let input = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t";
-        let expected = "I'm killing your brain like a poisonous mushroom".as_bytes().to_vec();
+        let expected = "I'm killing your brain like a poisonous mushroom"
+            .as_bytes()
+            .to_vec();
         assert_eq!(decode(input), expected);
     }
 }
